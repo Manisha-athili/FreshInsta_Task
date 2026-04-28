@@ -5,7 +5,7 @@ export const createTask = async (req, res) => {
         title: req.body.title,
         userId: req.userId
     });
-  
+
     res.status(201).json({
         message: "Task created successfully",
         task: task
@@ -23,7 +23,10 @@ export const getTasks = async (req, res) => {
 export const updateTask = async (req, res) => {
     const task = await Task.findOneAndUpdate(
         { _id: req.params.id, userId: req.userId },
-        { title: req.body.title, completed: req.body.completed },
+        {
+            // title: req.body.title, 
+            completed: req.body.completed
+        },
         { new: true }
     );
 
@@ -37,7 +40,7 @@ export const updateTask = async (req, res) => {
         message: "Task updated successfully",
         task: task
     });
-};  
+};
 
 export const deleteTask = async (req, res) => {
     const task = await Task.findOneAndDelete({ _id: req.params.id, userId: req.userId });
@@ -46,7 +49,7 @@ export const deleteTask = async (req, res) => {
         return res.status(404).json({
             message: "Task not found"
         });
-    }   
+    }
     res.status(200).json({
         message: "Task deleted successfully"
     });
