@@ -10,9 +10,9 @@ app.use(helmet());
 app.use(cors());
 app.use(morgan("dev"));
 
-const limiter = rateLimit({
-  windowMs: 15 * 60 * 1000, 
-  max: 5
+rateLimit({
+  windowMs: process.env.RATE_LIMIT_WINDOW * 60 * 1000,
+  max: process.env.RATE_LIMIT_MAX
 });
 
 
