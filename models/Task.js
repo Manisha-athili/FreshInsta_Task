@@ -1,9 +1,11 @@
-import mangoose from "mangoose";
 
-const taskSchema = new mangoose.Schema({
+import mongoose from "mongoose";
+
+
+const taskSchema = new mongoose.Schema({
     title : {type: String, required: true},
     completed : {type: Boolean, default: false},
-    userId : {type: mangoose.Schema.Types.ObjectId, ref: 'User', required: true}
+    userId : {type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true}
 }, {timestamps: true});
 
-export default mangoose.model('Task', taskSchema);
+export default mongoose.model('Task', taskSchema);

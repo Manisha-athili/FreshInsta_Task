@@ -1,4 +1,4 @@
-import Task from "../models/Task";
+import Task from "../models/Task.js";
 
 export const createTask = async (req, res) => {
     const task = await Task.create({
@@ -47,5 +47,7 @@ export const deleteTask = async (req, res) => {
             message: "Task not found"
         });
     }   
-
+    res.status(200).json({
+        message: "Task deleted successfully"
+    });
 }
